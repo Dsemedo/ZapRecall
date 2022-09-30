@@ -16,12 +16,12 @@ export default function App(){
 }
 
 const Fundo = styled.div`
-    background-color: #FB6B6B;
-    height: 600px;
-    width: 420px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  background-color: #FB6B6B;
+  width: 100vw;
+  min-height: 110vh;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
