@@ -18,7 +18,7 @@ export default function App(){
 const Fundo = styled.div`
   background-color: #FB6B6B;
   width: 100vw;
-  min-height: 110vh;
+  min-height: 90vh;
   padding-bottom: 100px;
   display: flex;
   flex-direction: column;

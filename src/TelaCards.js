@@ -2,9 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import SmallLogo from "./assets/img/logo.png"
 import SetaVirar from "./assets/img/seta_virar.png"
-// import IconeZap from "./assets/img/icone_certo.png"
-// import IconeError from "./assets/img/icone_erro.png"
-// import IconeAlmost from "./assets/img/icone_quase.png"
+import IconeZap from "./assets/img/icone_certo.png"
+import IconeError from "./assets/img/icone_erro.png"
+import IconeAlmost from "./assets/img/icone_quase.png"
+
+
 
 export default function TelaCards() {
   const [cardOpen, setCardOpen] = useState([]);
@@ -15,11 +17,16 @@ export default function TelaCards() {
 
 
 
-  const decks = [{ Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }]
+  const decks = [{ Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O React é __", Resposta: "Uuma biblioteca JavaScript para construção de interfaces" }, { Pergunta: "Componentes devem iniciar com __", Resposta: "letra maiuscula" }, { Pergunta: "Podemos colocar __ dentro do JSX", Resposta: "expressões" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }]
 
   console.log(cardAlmost)
   console.log(cardError)
   console.log(cardZap)
+
+
+  
+
+  console.log(decks.length);
 
   function CardClosed(props) {
     const { number, questions } = props;
@@ -29,6 +36,7 @@ export default function TelaCards() {
 
         <CardErrorClosed>
           Pergunta {number + 1}
+          <img src={IconeError} />
         </CardErrorClosed>
       )
 
@@ -37,14 +45,16 @@ export default function TelaCards() {
 
         <CardAlmostClosed>
           Pergunta {number + 1}
+          <img src={IconeAlmost} />
         </CardAlmostClosed>
       )
 
     } else if (cardZap.includes(number)) {
       return (
 
-        <CardZapClosed>
+        <CardZapClosed >
           Pergunta {number + 1}
+          <img src={IconeZap} />
         </CardZapClosed>
       )
     }
@@ -67,7 +77,7 @@ export default function TelaCards() {
             <Button cor={`#2FBE34`} onClick={() => setcardZap([...cardZap, number])}>
               Zap!!
             </Button>
-          
+
           </ContainerButton>
 
         </FlashCardAnswer>
@@ -93,6 +103,42 @@ export default function TelaCards() {
     }
   }
 
+  function FooterBar() {
+
+    return (
+      `${cardAlmost.length + cardError.length + cardZap.length}/${decks.length} CONCLUIDOS`
+    )
+  
+  }
+
+
+
+
+  // function ContarCards(number) {
+
+  //         return(
+  //           for (let i = 0; i < cardError.length; i++) {
+  //             if (cardError[i].includes(number)) {
+  //               return (
+  //                 <img src={IconeError} alt="vlala"/>
+  //               )
+  //             }}
+          
+  //             for (let i = 0; i < cardZap.length; i++) {
+  //               if (cardZap[i].includes(number) ) {
+  //                 return (
+  //                   <img src={IconeZap} alt="vlala"/>
+  //                 )
+  //               }}
+          
+  //               for (let i = 0; i < cardAlmost.length; i++) {
+  //                 if (cardAlmost[i].includes(number) ) {
+  //                   return (
+  //                     <img src={IconeAlmost} alt="vlala"/>
+  //                   )
+  //                 }}
+  //            }
+          
 
   return (
     <>
@@ -106,13 +152,21 @@ export default function TelaCards() {
       </Cards>
 
       <Footer>
-        0/4 CONCLUIDOS
+
+        <FooterBar />
+
+        {/* <ContarCards /> */}
 
       </Footer>
     </>
   )
 
 }
+
+
+
+
+
 
 const CardAlmostClosed = styled.div`
     width: 300px;
@@ -137,9 +191,9 @@ const CardErrorClosed = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
   text-decoration: line-through; 
-  color: #FF3030;;
+  background-color: white;
+  color: #FF3030;
   border-radius: 5px;
   margin: 10px 0px;
   padding: 10px 10px;
@@ -152,6 +206,7 @@ const CardZapClosed = styled.div`
     width: 300px;
   height: 50px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   text-decoration: line-through; 
@@ -162,6 +217,11 @@ const CardZapClosed = styled.div`
   padding: 10px 10px;
   cursor: pointer;
   font-family: 'Recursive', cursive;
+
+  img {
+    width: 20px;
+    height:20px;
+  }
 
 `
 
@@ -220,6 +280,7 @@ const FlashCardOpened = styled.div`
   width: 300px;
   height: 100px;
   display: flex;
+  flex-direction: row;
   background-color: #FFFFD4;
   color: black;
   border-radius: 5px;
@@ -260,6 +321,11 @@ const Footer = styled.div`
   color: #333333;
   padding: 10px;
   border: 2px solid #333333;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `
 
 const Button = styled.div`
