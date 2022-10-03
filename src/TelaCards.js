@@ -5,8 +5,7 @@ import SetaVirar from "./assets/img/seta_virar.png"
 import IconeZap from "./assets/img/icone_certo.png"
 import IconeError from "./assets/img/icone_erro.png"
 import IconeAlmost from "./assets/img/icone_quase.png"
-
-
+import DECKS from "./decks";
 
 export default function TelaCards() {
   const [cardOpen, setCardOpen] = useState([]);
@@ -15,18 +14,6 @@ export default function TelaCards() {
   const [cardAlmost, setcardAlmost] = useState([]);
   const [cardZap, setcardZap] = useState([]);
 
-
-
-  const decks = [{ Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O React é __", Resposta: "Uuma biblioteca JavaScript para construção de interfaces" }, { Pergunta: "Componentes devem iniciar com __", Resposta: "letra maiuscula" }, { Pergunta: "Podemos colocar __ dentro do JSX", Resposta: "expressões" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }, { Pergunta: "O que é JSX?", Resposta: "Uma extensão de linguagem do JavaScript" }]
-
-  console.log(cardAlmost)
-  console.log(cardError)
-  console.log(cardZap)
-
-
-  
-
-  console.log(decks.length);
 
   function CardClosed(props) {
     const { number, questions } = props;
@@ -102,16 +89,15 @@ export default function TelaCards() {
       )
     }
   }
+  
 
   function FooterBar() {
 
     return (
-      `${cardAlmost.length + cardError.length + cardZap.length}/${decks.length} CONCLUIDOS`
+      `${cardAlmost.length + cardError.length + cardZap.length}/${DECKS.length} CONCLUIDOS`
     )
   
   }
-
-
 
 
   // function ContarCards(number) {
@@ -148,7 +134,7 @@ export default function TelaCards() {
       </Topo>
 
       <Cards>
-        {decks.map((Q, index) => <CardClosed questions={Q} number={index} />)}
+        {DECKS.map((Q, index) => <CardClosed questions={Q} number={index} />)}
       </Cards>
 
       <Footer>
@@ -228,8 +214,8 @@ const CardZapClosed = styled.div`
 const TurnAnswer = styled.img`
   width: 20px;
   height: 20px;
-  margin-left: 175px;
-  margin-top: 80px;
+  margin-left: 93%;
+  margin-top: 75px;
 `
 
 const Topo = styled.div`
@@ -280,7 +266,7 @@ const FlashCardOpened = styled.div`
   width: 300px;
   height: 100px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: #FFFFD4;
   color: black;
   border-radius: 5px;
