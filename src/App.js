@@ -19,25 +19,20 @@ export default function App(){
 
             <Logomarca src={Logo} />
             ZapRecall
-            <button onClick={TrocarTela}>Iniciar Recall!!</button>
+            <button data-identifier="start-btn" onClick={TrocarTela}>Iniciar Recall!!</button>
         </Container>
     )
 }
 
     return (
-
         <>
         <GlobalStyles />
         <Fundo>
-          {iniciado ? <TelaCards /> : <TelaInicio/>}
-        
-        </Fundo>
-        
+          {iniciado ? <TelaCards /> : <TelaInicio/>}        
+        </Fundo>        
         </>
     )    
 }
-
-
 
 const Logomarca = styled.img`
     width: 150px;
@@ -81,4 +76,3 @@ const Fundo = styled.div`
   flex-direction: column;
   align-items: center;
 `
-

@@ -23,7 +23,7 @@ export default function TelaCards() {
 
         <CardErrorClosed>
           Pergunta {number + 1}
-          <img src={IconeError} />
+          <img data-identifier="flashcard-status" src={IconeError}/>
         </CardErrorClosed>
       )
 
@@ -32,7 +32,7 @@ export default function TelaCards() {
 
         <CardAlmostClosed>
           Pergunta {number + 1}
-          <img src={IconeAlmost} />
+          <img data-identifier="flashcard-status" src={IconeAlmost} />
         </CardAlmostClosed>
       )
 
@@ -41,27 +41,27 @@ export default function TelaCards() {
 
         <CardZapClosed >
           Pergunta {number + 1}
-          <img src={IconeZap} />
+          <img data-identifier="flashcard-status" src={IconeZap} />
         </CardZapClosed>
       )
     }
 
     else if (answerOpen.includes(number)) {
       return (
-        <FlashCardAnswer>
+        <FlashCardAnswer data-identifier="flashcard-answer">
 
           {questions.Resposta}
 
           <ContainerButton>
 
-            <Button cor={`#FF3030`} onClick={() => setCardError([...cardError, number])}>
+            <Button data-identifier="forgot-btn" cor={`#FF3030`} onClick={() => setCardError([...cardError, number])}>
               Não lembrei
             </Button>
 
-            <Button cor={`#FF922E`} onClick={() => setcardAlmost([...cardAlmost, number])}>
+            <Button data-identifier="almost-forgot-btn" cor={`#FF922E`} onClick={() => setcardAlmost([...cardAlmost, number])}>
               Quase não lembrei </Button>
 
-            <Button cor={`#2FBE34`} onClick={() => setcardZap([...cardZap, number])}>
+            <Button data-identifier="zap-btn" cor={`#2FBE34`} onClick={() => setcardZap([...cardZap, number])}>
               Zap!!
             </Button>
 
@@ -74,9 +74,9 @@ export default function TelaCards() {
 
     else if (cardOpen.includes(number)) {
       return (
-        <FlashCardOpened>
+        <FlashCardOpened data-identifier="flashcard-question">
           {questions.Pergunta}
-          <TurnAnswer src={SetaVirar} onClick={() => setAnswerOpen([...answerOpen, number])} />
+          <TurnAnswer data-identifier="flashcard-turn-btn"src={SetaVirar} onClick={() => setAnswerOpen([...answerOpen, number])} />
         </FlashCardOpened>
       )
     }
@@ -89,42 +89,14 @@ export default function TelaCards() {
       )
     }
   }
-  
 
   function FooterBar() {
 
     return (
       `${cardAlmost.length + cardError.length + cardZap.length}/${DECKS.length} CONCLUIDOS`
     )
-  
+
   }
-
-
-  // function ContarCards(number) {
-
-  //         return(
-  //           for (let i = 0; i < cardError.length; i++) {
-  //             if (cardError[i].includes(number)) {
-  //               return (
-  //                 <img src={IconeError} alt="vlala"/>
-  //               )
-  //             }}
-          
-  //             for (let i = 0; i < cardZap.length; i++) {
-  //               if (cardZap[i].includes(number) ) {
-  //                 return (
-  //                   <img src={IconeZap} alt="vlala"/>
-  //                 )
-  //               }}
-          
-  //               for (let i = 0; i < cardAlmost.length; i++) {
-  //                 if (cardAlmost[i].includes(number) ) {
-  //                   return (
-  //                     <img src={IconeAlmost} alt="vlala"/>
-  //                   )
-  //                 }}
-  //            }
-          
 
   return (
     <>
@@ -134,25 +106,16 @@ export default function TelaCards() {
       </Topo>
 
       <Cards>
-        {DECKS.map((Q, index) => <CardClosed questions={Q} number={index} />)}
+        {DECKS.map((Q, index) => <CardClosed  data-identifier="flashcard" questions={Q} number={index} />)}
       </Cards>
 
       <Footer>
-
         <FooterBar />
-
-        {/* <ContarCards /> */}
-
       </Footer>
     </>
   )
 
 }
-
-
-
-
-
 
 const CardAlmostClosed = styled.div`
     width: 300px;
@@ -168,6 +131,7 @@ const CardAlmostClosed = styled.div`
   padding: 10px 10px;
   cursor: pointer;
   font-family: 'Recursive', cursive;
+    box-shadow: 0px 4px 5px ;
 
 `
 
@@ -185,10 +149,13 @@ const CardErrorClosed = styled.div`
   padding: 10px 10px;
   cursor: pointer;
   font-family: 'Recursive', cursive;
+    box-shadow: 0px 4px 5px ;
 
 `
 
 const CardZapClosed = styled.div`
+
+box-shadow: 0px 4px 5px ;
     width: 300px;
   height: 50px;
   display: flex;
@@ -243,8 +210,6 @@ const Cards = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: red;
-    box-shadow: 0px 4px 5px ;
     border-radius: 5px;
 `
 const FlashCardClosed = styled.div`
@@ -260,6 +225,7 @@ const FlashCardClosed = styled.div`
   padding: 10px 10px;
   cursor: pointer;
   font-family: 'Recursive', cursive;
+    box-shadow: 0px 4px 5px ;
   `
 
 const FlashCardOpened = styled.div`
@@ -274,6 +240,7 @@ const FlashCardOpened = styled.div`
   padding: 10px 10px;
   cursor: pointer;
   font-family: 'Recursive', cursive;
+    box-shadow: 0px 4px 5px ;
   `
 
 const FlashCardAnswer = styled.div`
@@ -289,6 +256,7 @@ margin: 10px 0px;
 padding: 10px 10px;
 cursor: pointer;
 font-family: 'Recursive', cursive;
+    box-shadow: 0px 4px 5px ;
 `
 
 const Footer = styled.div`
@@ -337,5 +305,4 @@ const ContainerButton = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 `
