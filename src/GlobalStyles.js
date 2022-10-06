@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
- 
+import { createGlobalStyle } from "styled-components";
+
 const GlobalStyles = createGlobalStyle`
 
 html, body, div, span, applet, object, iframe,
@@ -49,6 +49,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+/* *{
+	box-sizing: border-box;
+}
+button{
+	cursor: pointer;
+} */
 `;
- 
+
 export default GlobalStyles;
